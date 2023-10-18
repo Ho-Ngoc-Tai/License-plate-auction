@@ -1,4 +1,4 @@
-var data = require('../fn/mysql-db')
+var data = require('../Model/mysql-db')
 
 exports.register = (user) => {
 
