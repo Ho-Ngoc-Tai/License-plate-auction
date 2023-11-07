@@ -1,4 +1,4 @@
-var data = require('../fn/mysql-db');
+var data = require('../Model/mysql-db');
 var date = new Date();
 
 exports.LoadPage = function(page){
@@ -29,4 +29,34 @@ exports.SearchNameProduct = function(name) {
     var sql = `select * from product where ProductName like '%${name}%'`;
 
     return data.load(sql);
+}
+
+exports.TopTurnPay = function(){
+    var sql = `select * from product ORDER BY TurnPay DESC LIMIT 0,5`;
+
+    return data.load(sql);
+}
+
+exports.TopPriceNow = function(){
+    var sql = `select * from product order by PriceNow DESC LIMIT 0,5`;
+
+    return data.load(sql);
+}
+
+exports.TopEndTime = function(){
+    var sql = `SELECT * from product ORDER BY TimeDown DESC LIMIT 0,5`
+
+    return data.load(sql);
+}
+
+exports.AutoAdd10Minutes = function() {
+    var sql = `UPDATE product SET TimeDown = DATE_ADD(NOW(),INTERVAL 10 MINUTE), AutoUpdate = b'0' WHERE AutoUpdate = b'1' and TimeDown <= DATE_ADD(NOW(),INTERVAL 5 MINUTE)`;
+
+    return data.update(sql);
+} 
+
+exports.AutoAuction = function(Id) {
+    var sql = `UPDATE product set PriceNow = PriceNow + Cost WHERE Id = '${Id}'`;
+
+    return data.update(sql);
 }
