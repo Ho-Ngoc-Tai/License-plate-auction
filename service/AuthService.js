@@ -1,4 +1,4 @@
-var mysql = require('../Model/mysql-db')
+var mysql = require('../Model/DbMysql')
 var jwt = require('jsonwebtoken')
 
 

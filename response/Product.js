@@ -1,4 +1,4 @@
-var data = require('../Model/mysql-db');
+var data = require('../Model/DbMysql');
 var date = new Date();
 
 exports.LoadPage = function(page){
