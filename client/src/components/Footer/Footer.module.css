@@ -1,0 +1,153 @@
+.container{
+    box-sizing: border-box;
+    width:100%;
+    height: 70%;
+    background-color: black;
+    border-bottom-left-radius: 10px;
+    padding-left: 10px;
+    position: absolute;
+    display: flex;
+}
+
+.footerbottom{
+    position: absolute; /* Hoặc có thể sử dụng 'fixed' tùy theo yêu cầu của bạn */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding-bottom: 100px;
+}
+
+.custom{
+    border: none;
+    width: 94%; /* Độ rộng của dấu gạch ngang (có thể điều chỉnh) */
+    background-color: #64748b;
+    height: 2px;
+    margin-left: 55px;
+    margin-bottom: 15px;
+}
+
+.end{
+    display: flex;
+    color: #64748b;
+    margin-left: 50px;
+}
+
+.pharagrapse1{
+    width: 77%;
+}
+
+.pharagrapse2{
+    width: 20%;
+    margin-left: 200px;
+}
+
+.info{
+    color: white;
+    width: 40%;
+    padding-left: 50px;
+    padding-top: 40px;
+}
+
+.info h1{
+    font-size: 25px;
+    font-family: bold;
+}
+
+.location{
+    display: flex;
+}
+
+.location i{
+    font-size: 20px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+}
+
+.location p{
+    font-size: 20px;
+    color: #ccc;
+    margin-top: 20px;
+}
+
+/* CSS cho biểu tượng và chữ màu xanh */
+.green {
+    color: #00cda8;
+    margin-right: 5px;
+    margin-top: 16px; /* Tạo khoảng cách giữa biểu tượng và chữ */
+  }
+
+/* Trong file Footer.module.css */
+.contact {
+    display: flex;
+    align-items: center; /* Canh giữa các phần tử theo chiều dọc */
+    color: #ccc;
+}
+
+.email, .hotline {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* Khoảng cách giữa các phần tử con */
+}
+
+.doc{
+    padding-right: 50px;
+    padding-left: 30px;
+}
+
+.contact p{
+    cursor: pointer;
+}
+
+.pharagrapse{
+    color: #ccc;
+}
+/* Các rule CSS khác cho các phần tử trong .contact */
+
+/*Phần ABOUT*/
+.about{
+    color: white;
+    display: flex;
+    padding-top: 50px;
+    padding-left: 25px;
+    width: 30%;
+    justify-content: space-between;
+}
+
+.about li{
+    color: #ccc;
+}
+
+/*Phần BROWSER*/
+.browser{
+    width: 30%;
+    color: white;
+    margin-left: 50px;
+    padding-top: 50px;
+    align-items: center;
+}
+
+.browser ul{
+    display: flex;
+}
+
+.browser li{
+    margin-right: 40px;
+    list-style-type: none;
+}
+
+.mode{
+    margin-top: 20px;
+    width: 50%;
+    height: 7%;
+    background-color: #0f1a2a;
+    border-radius: 12px;
+    margin-left: 20px;
+    text-align: center;
+    justify-content: center;
+}
+
+.mode:hover{
+    border: 2px solid #00cda8;
+    cursor: pointer;
+    transition: 0.5s;
+}
