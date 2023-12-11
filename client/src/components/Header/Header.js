@@ -2,18 +2,25 @@ import React, { useState, useEffect } from 'react';
 import styles from './Header.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faHammer, faBell, faPersonBreastfeeding, faV } from '@fortawesome/free-solid-svg-icons';
-import ModalLogin from '../../components/ModalAddNew'
+import Modal from '../Modal';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setLoggedIn] = useState(false);
-  const [isShowModalLogin, setIsShowModalLogin] = useState(false);
-  const handleClose = () => setIsShowModalLogin(false);
+  const [isShowModalLogin, setIsShowModalLogin] = useState(false);  
+  const [open, setOpen] = React.useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
   };
+  
+  const handleClose = () => {
+    setOpen(false);
+  };
 
+  const handleOpen = () => {
+      setOpen(true);
+  };
   
   return (
     <div className={styles.container}>
@@ -77,15 +84,37 @@ function Header() {
         ) : (
           // Hiển thị Đăng ký/Đăng nhập khi chưa đăng nhập
           <>
-          <div className={styles.formLogin}>
-            <button className={styles.login} onClick={() => setIsShowModalLogin(true)}>Đăng nhập</button>
-            <button className={styles.login}>Đăng ký</button>
-          </div>
-          {/* Hiển thị modal khi isShowModalLogin là true */}
-          {isShowModalLogin && (
-            <ModalLogin show={isShowModalLogin} handleClose={() => setIsShowModalLogin(false)} />
-          )}
-        </>
+            <div className={styles.formLogin}>
+                  {/* Thêm sự kiện click để hiển thị modal */}
+                  <button className={styles.login} type={styles.button} onClick={handleOpen}>
+                    Đăng nhập
+                </button>
+                  <Modal isOpen={open} onClose={handleClose}>
+                    <>
+                    <form>
+                      <h3>Đăng nhập tại đây</h3>
+
+                      <label className={styles.username}>Tên người dùng</label>
+                      <input type="text" placeholder="Email hoặc Số điện thoại" id="username" />
+
+                      <label className={styles.password}>Mật khẩu</label>
+                      <input type="password" placeholder="Mật khẩu" id="password" />
+
+                      <button>Đăng nhập</button>
+                      <div className={styles.social}>
+                        <div className={styles.go}><i className={styles.fa_google}></i> Google</div>
+                        <div className={styles}><i className={styles.fa_facebook}></i> Facebook</div>
+                      </div>
+                    </form>
+                    </>
+                  </Modal>
+              <button className={styles.login}>Đăng ký</button>
+            </div>
+            {/* Hiển thị modal khi isShowModalLogin là true */}
+            {isShowModalLogin && (
+              <Modal show={isShowModalLogin} handleClose={() => setIsShowModalLogin(false)} />
+            )}
+          </>
         )}
       </div>
       <div className={styles.separator}></div>
