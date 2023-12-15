@@ -30,7 +30,7 @@ $("#btnlogin").on("click", () => {
                     'token': localStorage.access_token
                 }
             }).done((data) => {
-                location.href = '/'      
+                window.location.href = '/'      
             })
         }
     })

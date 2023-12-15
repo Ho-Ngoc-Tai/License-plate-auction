@@ -1,0 +1,410 @@
+.container{
+  display: flex;
+  background-color: rgb(133, 0, 22);
+  position: sticky;
+  border-top-left-radius: 10px; /* Đặt bo mép trên bên trái */
+  padding-bottom: 5px;
+  z-index: 100;
+}
+
+.logo{
+    padding-left: 20px;
+}
+/*Phần Content*/
+.content{
+    padding-top: 20px;
+    display: flex;
+    font-size: 20px;
+    color: #94a3b8;
+}
+
+.content div{
+  padding-left: 10px;
+}
+
+.content div:hover{
+    cursor: pointer;
+    color: white;
+    transition: 0.5s;
+}
+
+.yellowblink {
+  animation: yellowBlink 1s infinite;
+}
+
+@keyframes yellowBlink {
+  0% {
+      color: red;
+  }
+  50% {
+      color: orange;
+  }
+  100% {
+      color: yellow;
+  }
+}
+
+.icon{
+    margin-left: 400px;
+    display: flex;
+    font-size: 25px;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.icon i{
+    margin-left: 15px;
+    color: white;
+    background-color: transparent;
+}
+
+/*Phần Account*/
+.account {
+    display: flex;
+    padding-top: 5px;
+    width: 220px; /* Chiều rộng của hình chữ nhật */
+    height: 40px; /* Chiều cao của hình chữ nhật */
+    background-color: transparent; /* Đặt màu nền là trong suốt */
+    border: 2px solid white; /* Màu viền và độ dày của viền */
+    border-radius: 50px; /* Độ cong của cạnh hình chữ nhật */
+    align-items: center; /* Căn chỉnh nội dung theo chiều dọc (đứng) */
+    margin-top: 10px;
+  }
+  
+  .account p {
+    margin-left: 10px;
+    font-size: 20px;
+    color: white;
+  }
+
+  .account .info{
+    display: flex; /* Sử dụng flexbox cho phần tử i */
+    align-items: center; /* Căn giữa nội dung theo chiều dọc */
+    justify-content: center; /* Căn giữa nội dung theo chiều ngang */
+    font-size: 35px;
+    width: 40px; /* Chiều rộng của hình chữ nhật */
+    height: 42px; /* Chiều cao của hình chữ nhật */
+    border: 0.5px solid #333; /* Màu viền và độ dày của viền */
+    border-radius: 50px; /* Độ cong của cạnh hình chữ nhật */
+    /* Áp dụng gradient làm background cho một phần tử */
+    color: white;
+    background: linear-gradient(90.67deg, #01ab6f 0.13%, #00b49e 95.62%);
+  }
+
+  .account span{
+    color: white;
+    font-size: 15px;
+    margin-left: 15px;
+  }
+
+  .account i:hover{
+    background: linear-gradient(90.67deg, #01ab6f 0.13%, #9bd8d1 97.62%);
+    cursor: pointer;
+    transition: 0.5s;
+  }
+
+  .separator {
+    border-bottom: 1px solid #ccc; /* Thêm vạch cắt phân biệt dưới header */
+  }
+
+  .account .register{
+    display: flex;
+    margin-left: 10px;
+    width: 90px; /* Chiều rộng của hình chữ nhật */
+    height: 38px; /* Chiều cao của hình chữ nhật */
+    background-color: transparent; /* Đặt màu nền là trong suốt */
+    border: 2px solid transparent; /* Màu viền và độ dày của viền */
+    border-radius: 50px; /* Độ cong của cạnh hình chữ nhật */
+    align-items: center; /* Căn chỉnh nội dung theo chiều dọc (đứng) */
+  }
+
+.account span{
+  transition: transform 0.3s ease;
+}
+
+.arrow {
+  cursor: pointer;
+  margin-left: 10px;
+  transition: transform 0.3s ease;
+}
+
+.rotateArrow {
+  transform: rotate(180deg);
+}
+
+.formLogin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Điều này làm cho nội dung ở giữa theo chiều dọc */
+}
+
+.formLogin .login{
+  color: #33de93;
+  background: transparent;
+  border: transparent;
+  font-size: 16px;
+  font-weight: bold;
+}
+/* Các styles khác cho login button có thể được thêm vào đây */
+.formLogin .login {
+  margin: 0 10px 0 20px;
+  cursor: pointer; /* Điều chỉnh khoảng cách giữa các nút nếu cần thiết */
+}
+
+/* CSS cho menu */
+.dropdownMenu {
+  display: flex;
+  max-height: 0; /* Điểm bắt đầu với max-height là 0 để ẩn menu */
+  overflow: hidden;
+  transition: 0.9s; /* Thêm hiệu ứng trượt với độ trễ 0.3s */
+}
+
+/* CSS cho menu khi mở */
+.dropdownMenu.active {
+  max-height: 100px; /* Độ cao tối đa khi menu mở */
+}
+
+.dropdownMenu ul {
+  position: absolute;
+  margin-top: 30px;
+  width: 180px;
+  height: 120px;
+  background-color: #475569;
+  z-index: 1000 !important;
+  margin-right: 10px;
+  right: 0;
+  border: 2px solid transparent;
+  border-radius: 12px;
+}
+
+.dropdownMenu li{
+  list-style-type: none;
+  color: white;
+  font-size: 17px;
+  z-index: 1;
+}
+
+/*Phần thủ tục*/
+
+/* Ẩn các tùy chọn thủ tục đấu giá ban đầu */
+.thuTucDauGiaMenu {
+  display: none;
+  position: absolute;
+  background-color: #fff; /* Điều chỉnh màu nền phù hợp */
+  width: 350px; /* Điều chỉnh kích thước phù hợp */
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  margin-top: 16px;
+  color: #333;
+  line-height: 0.5cm;
+  font-family: Roboto Condensed,sans-serif;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/* Hiển thị các tùy chọn thủ tục đấu giá khi hover vào phần "Thủ tục đấu giá" */
+.thuTucDauGia:hover .thuTucDauGiaMenu {
+  display: block;
+}
+
+/* CSS cho submenu */
+/*Thêm chú thích tại đây*/
+.submenu {
+  display: none;
+  position: absolute;
+  background-color: #475569;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 5px;
+  right: 0;
+  z-index: 1; /* Đảm bảo submenu hiển thị trên các phần tử khác */
+}
+
+.submenu.active {
+  display: block;
+}
+
+.thuTucDauGiaMenu .menuOption{
+  margin: 10px 0;
+}
+
+/*Phần tin tức*/
+
+/* Ẩn các tùy chọn thủ tục đấu giá ban đầu */
+.tinTucMenu {
+  display: none;
+  position: absolute;
+  background-color: #fff; /* Điều chỉnh màu nền phù hợp */
+  width: 200px; /* Điều chỉnh kích thước phù hợp */
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  margin-top: 16px;
+  color: #333;
+  line-height: 0.5cm;
+  font-family: Roboto Condensed,sans-serif;
+  font-size: 15px;
+}
+
+/* Hiển thị các tùy chọn thủ tục đấu giá khi hover vào phần "Thủ tục đấu giá" */
+.tinTuc:hover .tinTucMenu {
+  display: block;
+}
+
+.tinTucMenu .menuOption{
+  margin: 10px 0;
+}
+
+/*Phần FORM LOGIN*/
+
+form {
+  height: 600px;
+  width: 1000px;
+  background-color: rgba(131, 42, 42, 0.818);
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+  padding: 0 35px;
+}
+
+form * {
+  font-family: 'Poppins', sans-serif;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  outline: none;
+  border: none;
+}
+
+form h3 {
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 42px;
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.formLogin input{
+  display: block;
+  height: 50px;
+  width: 100%;
+  background-color: rgba(136, 77, 77, 0.712);
+  border-radius: 3px;
+  padding: 0 10px;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+::placeholder {
+  color: #e5e5e5;
+}
+
+.formLogin button{
+  width: 100%;
+  background-color: #ffffff;
+  color: #080710;
+  padding: 15px 0;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.social {
+  margin-top: 30px;
+  display: flex;
+}
+
+.social div {
+  background: red;
+  width: 150px;
+  border-radius: 3px;
+  padding: 5px 10px 10px 5px;
+  background-color: rgba(255, 255, 255, 0.27);
+  color: #eaf0fb;
+  text-align: center;
+}
+
+.social div:hover {
+  background-color: rgba(255, 255, 255, 0.47);
+}
+
+.social .fb {
+  margin-left: 25px;
+  background-color: rgb(47, 112, 204);
+}
+
+.social i {
+  margin-right: 4px;
+}
+
+/* Phần SIGN UP */
+
+/* Định nghĩa các lớp CSS sử dụng trong JSX */
+.registerForm {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.registerForm h2 {  
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+.registerForm form {
+  margin-bottom: 20px;
+}
+
+.registerForm label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.registerForm input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+
+.registerForm button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.registerForm button:hover {
+  background-color: #45a049;
+}
+
+.social {
+  display: flex;
+  justify-content: space-between;
+}
+
+.social div {
+  width: 48%; /* Điều chỉnh theo ý muốn */
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* Các kiểu CSS khác nếu cần thiết */

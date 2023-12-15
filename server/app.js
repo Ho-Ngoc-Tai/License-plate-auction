@@ -36,21 +36,21 @@ mailer.extend(app, {
     }
 });
 
-app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/views/frontend/layouts/index.html');
-});
+// app.get('/', function (req, res) {
+//     res.sendFile(__dirname + '/client/pages/home/Home.js');
+// });
 
-app.get('/single', function (req, res) {
-    res.sendFile(__dirname + '/views/frontend/layouts/single.html');
-});
+// app.get('/single', function (req, res) {
+//     res.sendFile(__dirname + '/');
+// });
 
-app.get('/login', function (req, res) {
-    res.sendFile(__dirname + '/views/frontend/layouts/login.html');
-});
+// app.get('/login', function (req, res) {
+//     res.sendFile(__dirname + '/');
+// });
 
-app.get('/register', function (req, res) {
-    res.sendFile(__dirname + '/views/frontend/layouts/register.html');
-});
+// app.get('/register', function (req, res) {
+//     res.sendFile(__dirname + '/');
+// });
 
 app.use('/auth', AuthRouter)
 app.use('/admin', AdminRouter)

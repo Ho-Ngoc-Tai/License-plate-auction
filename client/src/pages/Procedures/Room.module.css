@@ -1,0 +1,87 @@
+*{
+    box-sizing: border-box;
+}
+
+.paragraph{
+    padding: 15px 90px 0px;
+    display: flex;
+    color: rgb(128, 128, 128);
+}
+
+.paragraph .p:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.Product{
+    margin: 50px 90px 0px;
+    overflow-x: inherit;
+}
+
+.Product span{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.productAuction{
+    color: rgb(193, 31, 58);
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-family: "Roboto Condensed";
+}
+
+.line{
+    width: 64%;
+    margin: 5px 90px;
+    height: 2.5px;
+    background: rgb(193, 31, 58);
+    margin-bottom: 18px;
+}
+
+.content{
+    width: 65%;
+    margin: 5px 90px;
+    font-family: Arial,Helvetica,sans-serif;
+
+}
+
+.content h1{
+    margin-top: 45px;
+    font-size: 17px;
+}
+
+.content p{
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 25px;
+    text-align: justify;
+}
+
+.Product{
+    margin: 50px 90px 0px;
+    overflow-x: inherit;
+}
+
+.Product span{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.showAll{
+    font-weight: 600;
+    color: rgb(193, 32, 59);
+    text-decoration: underline;
+    font-family: "Roboto Condensed";
+    font-size: 17px;
+}
+
+.slide{
+    width: 90%;
+    margin-left: 100px;
+    margin-top: 50px;
+}
