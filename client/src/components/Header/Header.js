@@ -1,26 +1,64 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './Header.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faHammer, faBell, faPersonBreastfeeding, faV } from '@fortawesome/free-solid-svg-icons';
-import Modal from '../Modal';
+import Modal from '../Modal.js';
+import ModalAddNew from '../ModalAddNew.js';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [isShowModalLogin, setIsShowModalLogin] = useState(false);  
   const [open, setOpen] = React.useState(false);
+  const [run, setRun] = React.useState(false);
+  const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
+  };
+
+  const [loginClicked, setLoginClicked] = useState(false);
+
+  const handleSubMenuToggle = () => {
+    setIsSubMenuOpen((prevIsSubMenuOpen) => !prevIsSubMenuOpen);
+  };
+  
+  const handleOpen = () => {
+    setOpen(true);
   };
   
   const handleClose = () => {
     setOpen(false);
   };
-
-  const handleOpen = () => {
-      setOpen(true);
+  
+  const handleSignUpOpen = () => {
+    setRun(true);
   };
+  
+  const handleSignUpClose = () => {
+    setRun(false);
+  };
+
+  const closeSubMenu = () => {
+    setIsSubMenuOpen(false);
+  };
+
+  const menuRef = useRef();
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        closeSubMenu();
+      }
+    };
+
+    document.addEventListener('click', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+    };
+  }, []);
   
   return (
     <div className={styles.container}>
@@ -30,9 +68,13 @@ function Header() {
       <div className={styles.content}>
         <div className={styles.yellowblink}>Giới thiệu</div>
         <div className={styles.thuTucDauGiaWrapper}>
-        <div className={`${styles.menuOption} ${styles.thuTucDauGia}`}>
+        <div className={`${styles.menuOption} ${styles.thuTucDauGia}`} 
+        onClick={handleSubMenuToggle}
+        ref={menuRef}
+        >
           Thủ tục đấu giá
-          <div className={`${styles.thuTucDauGiaMenu}`}>
+          <div className={`submenu ${styles.thuTucDauGiaMenu} ${isSubMenuOpen ? styles.active : ''}`}
+          >
             <div className={styles.menuOption}>Đăng ký đấu giá</div>
             <div className={styles.menuOption}>Phiên/Phòng đấu giá trực tuyến</div>
             <div className={styles.menuOption}>Thanh toán tiền và nhận tài sản trúng đấu giá</div>
@@ -58,7 +100,7 @@ function Header() {
         <i><FontAwesomeIcon icon={faBell} /></i>
       </div>
       <div className={styles.account}>
-        {isLoggedIn ? (
+        {formSubmitted ? (
           // Hiển thị thông tin tài khoản khi đã đăng nhập
           <>
             <p>0398528547</p>
@@ -88,28 +130,55 @@ function Header() {
                   {/* Thêm sự kiện click để hiển thị modal */}
                   <button className={styles.login} type={styles.button} onClick={handleOpen}>
                     Đăng nhập
-                </button>
-                  <Modal isOpen={open} onClose={handleClose}>
-                    <>
-                    <form>
-                      <h3>Đăng nhập tại đây</h3>
+                  </button>
+                    <Modal isOpen={open} onClose={handleClose}>
+                      <>
+                      <form className={styles.form}>
+                        <h3>Đăng nhập tại đây</h3>
 
-                      <label className={styles.username}>Tên người dùng</label>
-                      <input type="text" placeholder="Email hoặc Số điện thoại" id="username" />
+                        <label className={styles.username}>Tên người dùng</label>
+                        <input type="text" placeholder="Email hoặc Số điện thoại" id="username" />
 
-                      <label className={styles.password}>Mật khẩu</label>
-                      <input type="password" placeholder="Mật khẩu" id="password" />
+                        <label className={styles.password}>Mật khẩu</label>
+                        <input type="password" placeholder="Mật khẩu" id="password" />
 
-                      <button>Đăng nhập</button>
+                        <button onClick={() => { handleOpen(); setFormSubmitted(true); }}>
+                          Đăng nhập
+                        </button>
+
+                        <div className={styles.social}>
+                          <div className={styles.go}><i className={styles.fa_google}></i> Google</div>
+                          <div className={styles.fb}><i className={styles.fa_facebook}></i> Facebook</div>
+                        </div>
+                      </form>
+                      </>
+                    </Modal>
+              {/*Sự kiện SIGN UP*/}
+              <button className={styles.login} onClick={handleSignUpOpen}>Đăng ký</button>
+                <ModalAddNew isRun={run} onClose={handleSignUpClose}>
+                   <>
+                    <div className={styles.registerForm}>
+                      <h2>Registration Form</h2>
+                      <form>
+                          <label className={styles.email}>Email:</label>
+                          <input type="email" id="email" name="email" required />
+
+                          <label className={styles.password}>Password:</label>
+                          <input type="password" id="password" name="password" required />
+
+                          <label className={styles.confirm}>Confirm Password:</label>
+                          <input type="password" id="confirm-password" name="confirm-password" required />
+
+                          <button type="submit">Register</button>
+                      </form>
                       <div className={styles.social}>
-                        <div className={styles.go}><i className={styles.fa_google}></i> Google</div>
-                        <div className={styles}><i className={styles.fa_facebook}></i> Facebook</div>
+                          <div className={styles.go}><i className={styles.fa_google}></i> Google</div>
+                          <div className={styles.fb}><i className={styles.fa_facebook}></i> Facebook</div>
                       </div>
-                    </form>
-                    </>
-                  </Modal>
-              <button className={styles.login}>Đăng ký</button>
-            </div>
+                    </div>
+                  </>
+                </ModalAddNew>
+              </div>
             {/* Hiển thị modal khi isShowModalLogin là true */}
             {isShowModalLogin && (
               <Modal show={isShowModalLogin} handleClose={() => setIsShowModalLogin(false)} />

@@ -209,6 +209,23 @@
   display: block;
 }
 
+/* CSS cho submenu */
+/*Thêm chú thích tại đây*/
+.submenu {
+  display: none;
+  position: absolute;
+  background-color: #475569;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 5px;
+  right: 0;
+  z-index: 1; /* Đảm bảo submenu hiển thị trên các phần tử khác */
+}
+
+.submenu.active {
+  display: block;
+}
+
 .thuTucDauGiaMenu .menuOption{
   margin: 10px 0;
 }
@@ -327,8 +344,68 @@ label {
 
 .social .fb {
   margin-left: 25px;
+  background-color: rgb(47, 112, 204);
 }
 
 .social i {
   margin-right: 4px;
 }
+
+/* Phần SIGN UP */
+
+/* Định nghĩa các lớp CSS sử dụng trong JSX */
+.registerForm {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.registerForm h2 {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+.registerForm form {
+  margin-bottom: 20px;
+}
+
+.registerForm label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.registerForm input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+
+.registerForm button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.registerForm button:hover {
+  background-color: #45a049;
+}
+
+.social {
+  display: flex;
+  justify-content: space-between;
+}
+
+.social div {
+  width: 48%; /* Điều chỉnh theo ý muốn */
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* Các kiểu CSS khác nếu cần thiết */
