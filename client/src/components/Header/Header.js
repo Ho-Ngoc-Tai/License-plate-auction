@@ -4,6 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faHammer, faBell, faPersonBreastfeeding, faV } from '@fortawesome/free-solid-svg-icons';
 import Modal from '../Modal.js';
 import ModalAddNew from '../ModalAddNew.js';
+import $ from 'jquery';
+import swal from 'sweetalert2';
+
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,12 +16,70 @@ function Header() {
   const [run, setRun] = React.useState(false);
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
   };
 
-  const [loginClicked, setLoginClicked] = useState(false);
+  const handleRegister = async (event) => {
+    event.preventDefault(); 
+    var _fullName = $('#txtFullName').val();
+    var _address = $('#txtAdress').val();
+    var _email = $('#txtEmail').val();
+    var _password = $('#txtPassword').val();
+    var _confirmPassword = $('#txtConfirmPWD').val();
+
+
+    if (!validateEmail(_email)) {
+      swal.fire("Oops!", "Invalid email format!", "error");
+      return;
+    }
+
+    var body = {
+        email: _email,
+        address: _address,
+        password: _password,
+        fullname: _fullName
+    };
+
+    try {
+      const response = await fetch('http://localhost:5555/user/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      });
+  
+      const data = await response.json();
+  
+      if (data.success) {
+        // Hiển thị thông báo thành công
+        setRegistrationSuccess(true);
+        swal.fire("Good job!", "Registration Successful!", "success");
+        // Đặt trạng thái registrationSuccess thành true
+      } else {
+        // Hiển thị thông báo thất bại
+        swal.fire("Oops!", "Registration Failed!", "error");
+      }
+    } catch (error) {
+      // Xử lý lỗi nếu có
+      console.error('Error:', error);
+      // Hiển thị thông báo thất bại
+      swal.fire("Oops!", "Registration Failed!", "error");
+    }
+  };
+
+  useEffect(() => {
+    console.log('registrationSuccess:', registrationSuccess);
+  }, [registrationSuccess]);
+
+  
+  function validateEmail(email) {
+    const re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  }
 
   const handleSubMenuToggle = () => {
     setIsSubMenuOpen((prevIsSubMenuOpen) => !prevIsSubMenuOpen);
@@ -29,29 +90,67 @@ function Header() {
   };
   
   const handleClose = () => {
-    setOpen(false);
-  };
-  
-  const handleSignUpOpen = () => {
-    setRun(true);
-  };
-  
-  const handleSignUpClose = () => {
-    setRun(false);
-  };
+    
 
-  const closeSubMenu = () => {
-    setIsSubMenuOpen(false);
-  };
+  $("#btnlogin").on("click", () => {
+    var _email = $("#txtEmail").val();
+    var _password = $("#txtPassword").val();
 
-  const menuRef = useRef();
+    console.log(_email);
+    console.log(_password);
 
-  useEffect(() => {
-    const handleOutsideClick = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        closeSubMenu();
-      }
-    };
+    var body = {
+        email: _email,
+        password: _password
+    }
+
+    $.ajax({
+        url: 'http://localhost:5555/auth/signin',
+        dataType: 'json',
+        timeout: 10000,
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(body)
+    }).done((data) => {
+        localStorage.access_token = data.token
+        if (localStorage.access_token !== 'undefined') {
+            $.ajax({
+                url: 'http://localhost:5555/auth/secured',
+                dataType: 'json',
+                timeout: 10000,
+                headers: {
+                'token': localStorage.access_token
+                                }
+                            }).done((data) => {
+                                window.location.href = '/'      
+                            })
+                        }
+                    })
+                })
+
+      setOpen(false);
+      };
+      
+      const handleSignUpOpen = () => {
+        setRun(true);
+      };
+      
+      const handleSignUpClose = () => {
+        setRun(false);
+      };
+
+      const closeSubMenu = () => {
+        setIsSubMenuOpen(false);
+      };
+
+      const menuRef = useRef();
+
+      useEffect(() => {
+        const handleOutsideClick = (event) => {
+          if (menuRef.current && !menuRef.current.contains(event.target)) {
+            closeSubMenu();
+          }
+        };
 
     document.addEventListener('click', handleOutsideClick);
 
@@ -100,7 +199,8 @@ function Header() {
         <i><FontAwesomeIcon icon={faBell} /></i>
       </div>
       <div className={styles.account}>
-        {formSubmitted ? (
+        
+      {formSubmitted && registrationSuccess ? (
           // Hiển thị thông tin tài khoản khi đã đăng nhập
           <>
             <p>0398528547</p>
@@ -137,12 +237,12 @@ function Header() {
                         <h3>Đăng nhập tại đây</h3>
 
                         <label className={styles.username}>Tên người dùng</label>
-                        <input type="text" placeholder="Email hoặc Số điện thoại" id="username" />
+                        <input id='txtEmail' type="email" placeholder="Email hoặc Số điện thoại"  />
 
                         <label className={styles.password}>Mật khẩu</label>
-                        <input type="password" placeholder="Mật khẩu" id="password" />
+                        <input id='txtPassword' type="password" placeholder="Mật khẩu"  />
 
-                        <button onClick={() => { handleOpen(); setFormSubmitted(true); }}>
+                        <button id="btnlogin" onClick={() => { handleOpen(); setFormSubmitted(true); }}>
                           Đăng nhập
                         </button>
 
@@ -156,28 +256,29 @@ function Header() {
               {/*Sự kiện SIGN UP*/}
               <button className={styles.login} onClick={handleSignUpOpen}>Đăng ký</button>
                 <ModalAddNew isRun={run} onClose={handleSignUpClose}>
-                   <>
+                <>
                     <div className={styles.registerForm}>
-                      <h2>Registration Form</h2>
-                      <form>
-                          <label className={styles.email}>Email:</label>
-                          <input type="email" id="email" name="email" required />
-
-                          <label className={styles.password}>Password:</label>
-                          <input type="password" id="password" name="password" required />
-
-                          <label className={styles.confirm}>Confirm Password:</label>
-                          <input type="password" id="confirm-password" name="confirm-password" required />
-
-                          <button type="submit">Register</button>
-                      </form>
+                      <h2>Registration Form</h2>                                             
+                          <form onSubmit={handleRegister}>
+                            <label className={styles.email}>Full Name:</label>
+                            <input id="txtFullName" name="UID" type="text" placeholder="Full Name..." required=" "/>
+                            <label className={styles.email}>Address:</label>
+                            <input id='txtAdress' name='ADDRESS' type="text" placeholder="Address..." required=" "/>
+                            <label className={styles.email}>Email:</label>
+                            <input id="txtEmail" name="Email"  type="email" placeholder="Email Address" required=" "/>
+                            <label className={styles.password}>Password:</label>
+                            <input id="txtPassword" name="PWD" type="password" placeholder="Password" required=" "/>
+                            <label className={styles.confirm}>Confirm Password:</label>
+                            <input  id="txtConfirmPWD" name="ConfirmPWD" type="password" placeholder="Password Confirmation" required=" " />
+                            <button id="btnRegister" onClick={handleRegister} type="submit">Register</button>
+                          </form>                      
                       <div className={styles.social}>
                           <div className={styles.go}><i className={styles.fa_google}></i> Google</div>
                           <div className={styles.fb}><i className={styles.fa_facebook}></i> Facebook</div>
                       </div>
                     </div>
                   </>
-                </ModalAddNew>
+                </ModalAddNew>              
               </div>
             {/* Hiển thị modal khi isShowModalLogin là true */}
             {isShowModalLogin && (

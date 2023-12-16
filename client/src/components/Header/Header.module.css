@@ -120,7 +120,7 @@
   }
 
 .account span{
-  transition: transform 0.3s ease;
+transition: transform 0.3s ease;
 }
 
 .arrow {
@@ -169,14 +169,15 @@
 .dropdownMenu ul {
   position: absolute;
   margin-top: 30px;
-  width: 180px;
-  height: 120px;
-  background-color: #475569;
+  width: 200px;
+  height: 150px;
+  background-color: #02050a;
   z-index: 1000 !important;
   margin-right: 10px;
   right: 0;
   border: 2px solid transparent;
-  border-radius: 12px;
+  border-radius: 4px;
+  line-height: 1.45;
 }
 
 .dropdownMenu li{
@@ -259,8 +260,8 @@
 /*Phần FORM LOGIN*/
 
 form {
-  height: 520px;
-  width: 400px;
+  height: 600px;
+  width: 1000px;
   background-color: rgba(131, 42, 42, 0.818);
   position: absolute;
   transform: translate(-50%, -50%);
@@ -270,7 +271,7 @@ form {
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-  padding: 50px 35px;
+  padding: 0 35px;
 }
 
 form * {
@@ -312,15 +313,16 @@ label {
 }
 
 .formLogin button{
-  margin-top: 50px;
-  width: 100%;
-  background-color: #ffffff;
+  width: 50%;
+  background: springgreen;
   color: #080710;
   padding: 15px 0;
   font-size: 18px;
   font-weight: 600;
   border-radius: 5px;
   cursor: pointer;
+  margin-left: 230px;
+  margin-top: 90px;
 }
 
 .social {
@@ -355,13 +357,12 @@ label {
 
 /* Định nghĩa các lớp CSS sử dụng trong JSX */
 .registerForm {
-  background-color: #fff;
-  padding: 20px;
+  background-color: transparent;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.registerForm h2 {
+.registerForm h2 {  
   font-size: 1.5em;
   margin-bottom: 20px;
 }
@@ -385,7 +386,6 @@ label {
 .registerForm button {
   background-color: #4caf50;
   color: #fff;
-  padding: 10px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
