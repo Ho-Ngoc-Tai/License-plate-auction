@@ -137,7 +137,12 @@ transition: transform 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* Điều này làm cho nội dung ở giữa theo chiều dọc */
+  height: 100vh;
+}
+
+
+.btnloginWithMargin {
+  margin-top: 100px; 
 }
 
 .formLogin .login{
@@ -260,7 +265,7 @@ transition: transform 0.3s ease;
 /*Phần FORM LOGIN*/
 
 form {
-  height: 600px;
+  height: 660px;
   width: 1000px;
   background-color: rgba(131, 42, 42, 0.818);
   position: absolute;
@@ -272,6 +277,7 @@ form {
   border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
   padding: 0 35px;
+  margin-top: 20px;
 }
 
 form * {
@@ -313,7 +319,6 @@ label {
 }
 
 .formLogin button{
-  width: 50%;
   background: springgreen;
   color: #080710;
   padding: 15px 0;
@@ -321,8 +326,40 @@ label {
   font-weight: 600;
   border-radius: 5px;
   cursor: pointer;
-  margin-left: 230px;
-  margin-top: 90px;
+  margin-left: 370px;
+  margin-top: 20px;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh; /* Adjust the height if needed */
+  margin-top: 50px; /* Adjust the margin-top to move the form down */
+}
+
+.form {
+  text-align: center; /* Center the content within the form */
+}
+
+.btnlogin {
+  background: springgreen;
+  color: #080710;
+  padding: 15px 30px; /* Adjust padding as needed */
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px !important; /* Adjust margin as needed */
+}
+
+body .formLogin .btnlogin {
+  margin-top: 20px; /* hoặc giá trị khác tùy thuộc vào khoảng cách mong muốn */
+}
+
+.col5{
+  margin-top: 100px;
 }
 
 .social {
@@ -389,6 +426,9 @@ label {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  width: 400px;
+  margin-left: 270px; /* Thêm dòng này để dịch chuyển nút sang phải */
+  margin-right: 0;   /* Đảm bảo không có margin phải */
 }
 
 .registerForm button:hover {
