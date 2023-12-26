@@ -1,0 +1,41 @@
+/* signup.module.css */
+.gradientCustom3 {
+    background: #84fab0;
+    background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
+    background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
+  }
+  
+  .bgImage {
+    background-image: url(https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp);
+    width: 100%;
+    text-align: center;
+  }
+  
+  .card {
+    /* Add your card styles here */
+    padding-top: 10px;
+  }
+  
+  .cardBody {
+    /* Add your card body styles here */
+  }
+  
+  .title {
+    /* Add your title styles here */
+    padding-top: 30px;
+  }
+  
+  .input .label {
+    /* Add your input styles here */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .checkbox {
+    /* Add your checkbox styles here */
+  }
+  
+  .btn {
+    /* Add your button styles here */
+  }
+  

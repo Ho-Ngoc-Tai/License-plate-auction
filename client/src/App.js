@@ -10,7 +10,9 @@ import Room from "./pages/Procedures/Room.js";
 import Regulation from "./pages/Procedures/Regulation.js";
 import Detail from "./pages/Detail/Detail.js";
 import Auction from "./pages/Auction/Auction.js";
-import ModalAddNew from "./components/ModalAddNew.js";
+import Login from "./pages/Login/Login.js";
+import SignUp from "./pages/Singup/SignUp.js";
+
 function App() {
   return (
     <div className={Styles.container}>
@@ -21,11 +23,13 @@ function App() {
         <Route path="blogs" element={<Blogs />} />
         <Route path="contact" element={<Contact />} />
         <Route path="introduction" element={<Introduction />} />
-        <Route path="register" element={<Register />} />
         <Route path="room" element={<Room />} />
+        <Route path="register" element={<Register />} />
         <Route path="regulation" element={<Regulation />} />
         <Route path="detail" element={<Detail />} />
         <Route path="auction" element={<Auction />} />
+        <Route exact path="login" name="Login Page" element={<Login />} />
+        <Route exact path="signup" name="Register Page" element={<SignUp />} />
       </Route>
     </Routes>
     </BrowserRouter>

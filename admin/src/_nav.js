@@ -35,7 +35,7 @@ const _nav = [
   },
   {
     component: CNavTitle,
-    name: 'Bán hàng',
+    name: 'Đấu giá',
   },
   {
     component: CNavItem,

@@ -21,7 +21,7 @@ const routes = [
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
   { path: '/user/manager', name: 'Nhân sự', element: user },
   { path: '/user/role', name: 'Phân quyền', element: role },
-  { path: '/minimart/sales', name: 'Bán hàng', element: sales },
+  { path: '/minimart/sales', name: 'Đấu giá', element: sales },
   { path: '/minimart/sale_return', name: 'Trả hàng', element: sales_return },
   { path: '/strap_material', name: 'Thông số sản phẩm / Chất liệu dây', element: strap_material },
   { path: '/dialsize', name: 'Thông số sản phẩm / Kích cỡ mặt kính', element: dialsize },

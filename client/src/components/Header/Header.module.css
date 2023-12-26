@@ -22,7 +22,7 @@
   padding-left: 10px;
 }
 
-.content div:hover{
+.hover:hover{
     cursor: pointer;
     color: white;
     transition: 0.5s;
@@ -166,11 +166,6 @@ transition: transform 0.3s ease;
   transition: 0.9s; /* Thêm hiệu ứng trượt với độ trễ 0.3s */
 }
 
-/* CSS cho menu khi mở */
-.dropdownMenu.active {
-  max-height: 100px; /* Độ cao tối đa khi menu mở */
-}
-
 .dropdownMenu ul {
   position: absolute;
   margin-top: 30px;
@@ -196,7 +191,7 @@ transition: transform 0.3s ease;
 
 /* Ẩn các tùy chọn thủ tục đấu giá ban đầu */
 .thuTucDauGiaMenu {
-  display: none;
+  display: block;
   position: absolute;
   background-color: #fff; /* Điều chỉnh màu nền phù hợp */
   width: 350px; /* Điều chỉnh kích thước phù hợp */
@@ -218,18 +213,22 @@ transition: transform 0.3s ease;
 /* CSS cho submenu */
 /*Thêm chú thích tại đây*/
 .submenu {
-  display: none;
   position: absolute;
   background-color: #475569;
   border-radius: 8px;
   padding: 10px;
   margin-top: 5px;
   right: 0;
-  z-index: 1; /* Đảm bảo submenu hiển thị trên các phần tử khác */
+  z-index: 1000;
+  display: none;
 }
 
+.thuTucDauGia:hover .submenu {
+  display: block; 
+  }
+
 .submenu.active {
-  display: block;
+  display: block !important;
 }
 
 .thuTucDauGiaMenu .menuOption{
@@ -237,7 +236,6 @@ transition: transform 0.3s ease;
 }
 
 /*Phần tin tức*/
-
 /* Ẩn các tùy chọn thủ tục đấu giá ban đầu */
 .tinTucMenu {
   display: none;
@@ -251,6 +249,12 @@ transition: transform 0.3s ease;
   line-height: 0.5cm;
   font-family: Roboto Condensed,sans-serif;
   font-size: 15px;
+}
+
+/* Trong file CSS, thêm lớp mới cho liên kết */
+.blackLink {
+  text-decoration: none;
+  color: black;
 }
 
 /* Hiển thị các tùy chọn thủ tục đấu giá khi hover vào phần "Thủ tục đấu giá" */

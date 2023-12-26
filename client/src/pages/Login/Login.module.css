@@ -1,0 +1,104 @@
+/* Login.module.css */
+
+.myCustomContainerFluid {
+    display: flex;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .customBoldRow {
+    margin-top: 50px;
+  }
+  
+  .form {
+    width: 50%;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .myCustomCol {
+    width: 50%;
+  }
+  
+  .customImage {
+    padding: 50px;
+    width: 100%;
+    height: 500px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .customFlexRow {
+    margin-top: 30px;
+  }
+  
+  /* styles.module.css */
+
+/* styles.module.css */
+
+.inputContainer {
+    position: relative;
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+  
+  .inputLogin {
+    width: 50%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    position: relative;
+  }
+  
+  .inputLabel {
+    position: absolute;
+    top: -30%;
+    left: 10px;
+    margin-left: 200px;
+    pointer-events: none;
+    transform: translateY(-50%);
+    transition: font-size 0.3s ease, transform 0.3s ease;
+  }
+  
+  .inputLogin:focus + .inputLabel,
+  .inputLogin:valid + .inputLabel {
+    font-size: 12px;
+    transform: translateY(-240%);
+    color: #1161ee; /* Màu chữ khi focus */
+    font-weight: bold;
+  }
+  
+
+  .BtnLogin{
+    width: 50%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    position: relative; 
+    background-color: #50abc8;
+    font-size: 17px;
+    font-weight: bold;
+    color: white;
+    margin: 40px;
+  }
+
+  .BtnLogin:hover {
+    background-color: #2086a8;
+  }
+
+.Forgot{
+
+    text-decoration: none;
+}
+
+.Register{
+    text-decoration: none;
+    color: aqua;
+}
+
+.blackLink {
+    text-decoration: none;
+    color: black;
+  }
+  
