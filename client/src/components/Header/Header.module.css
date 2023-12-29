@@ -259,7 +259,7 @@
 /*Phần FORM LOGIN*/
 
 form {
-  height: 600px;
+  height: 700px;
   width: 1000px;
   background-color: rgba(131, 42, 42, 0.818);
   position: absolute;
@@ -293,6 +293,13 @@ label {
   margin-top: 30px;
   font-size: 16px;
   font-weight: 500;
+}
+.checkbox {
+  display: flex;
+}
+
+.checkbox .input{
+  font-size: 10px;
 }
 
 .formLogin input{
@@ -374,11 +381,24 @@ label {
   margin-bottom: 8px;
 }
 
+.scrollableForm {
+  max-height: 400px; /* hoặc bất kỳ giá trị max-height nào bạn muốn */
+  overflow-y: auto;
+}
+
 .registerForm input {
   width: 100%;
   padding: 8px;
   margin-bottom: 16px;
   box-sizing: border-box;
+}
+.registerForm CountryDropdown {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  background-color: rgb(0, 0, 0); /* Màu nền */
+  color: white; /* Màu chữ */
 }
 
 .registerForm button {
