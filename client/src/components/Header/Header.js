@@ -92,14 +92,10 @@ function Header() {
         password: Yup.string().min(4).max(20).required("You must input a password"),
     });
 
-    // These here are for the Modal that displays awaiting approval
     const [open, setOpen] = React.useState(false);
-
     const handleClose = () => {
         setOpen(false);
     }
-
-     // These here are for the Modal that displays awaiting approval
      const [openAlert, setOpenAlert] = React.useState(false);
      const handleOpenAlert = () => setOpenAlert(true);
      const handleCloseAlert = () => {
@@ -229,7 +225,6 @@ function Header() {
     setOpenDialog(false);
     holdData.country = mycountry;
         
-    // if the user inputed coordinates add them too
     if (Object.keys(coordinates).length > 0 ){
         var point = { type: 'Point', coordinates: [coordinates.lat, coordinates.lng]};
         holdData.latitudeLongitude = point;
@@ -282,10 +277,9 @@ function Header() {
         <i><FontAwesomeIcon icon={faBell} /></i>
       </div>
       <div className={styles.account}>
-        {!authState.status ?(
-          // Hiển thị thông tin tài khoản khi đã đăng nhập
+        {!setAuthState.status ?(
           <>
-            <div>&nbsp;{authState.username}</div>
+            <div>&nbsp;{setAuthState.username}</div>
             <div className={styles.register}>
               <i className={styles.info}><FontAwesomeIcon icon={faPersonBreastfeeding} /></i>
               <span className={`${styles.arrow} ${isMenuOpen ? styles.rotateArrow : ""}`} onClick={toggleMenu}>
@@ -300,7 +294,7 @@ function Header() {
                     <li>Tài liệu của tôi</li>
                     <li>Đổi mật khẩu</li>
                     <div>
-                      <button onClick={handleSignUpClose} > Đăng xuất</button> 
+                      <button onClick={handleSignUpClose}> Đăng xuất</button> 
                       <Dialog
                         open={open}
                         onClose={handleSignUpClose}
@@ -310,7 +304,7 @@ function Header() {
                         <DialogTitle id="alert-dialog-title" style={{
                               fontFamily: 'Futura',
                           }}>
-                          {"Are you sure you want to sign out?"}
+                          {"Bạn muốn đăng xuất?"}
                         </DialogTitle>
                         <DialogActions>
                             <button className="buttonitoReverse" onClick={handleClose}>Cancel</button>
@@ -386,14 +380,14 @@ function Header() {
                                 
                                   <Form className='formContainer gradient-custom' >
                                   <div style={{ overflowY: 'auto', maxHeight: '100vh', border: '1px solid #ccc' }}>
-                                      <label>Username: </label>
+                                      <label>Tên đăng nhập: </label>
                                       <ErrorMessage name="username" component="span" />
                                       <Field 
                                       id="inputCreateItem" 
                                       name="username" 
                                       placeholder="Username" 
                                       />
-                                      <label>Password: </label>
+                                      <label>Mật Khẩu: </label>
                                       <ErrorMessage name="password" component="span" />
                                       <Field 
                                       id="inputCreateItem" 
@@ -401,7 +395,7 @@ function Header() {
                                       type="password"
                                       placeholder="*****" 
                                       />
-                                      <label>Confirm Password: </label>
+                                      <label>Nhập lại mật khẩu: </label>
                                       <ErrorMessage name="confirmPassword" component="span" />
                                       <Field 
                                       id="inputCreateItem" 
@@ -409,14 +403,14 @@ function Header() {
                                       type="password"
                                       placeholder="*****" 
                                       />
-                                      <label>Name: </label>
+                                      <label>Tên: </label>
                                       <ErrorMessage name="name" component="span" />
                                       <Field 
                                       id="inputCreateItem" 
                                       name="name" 
                                       placeholder="Name" 
                                       />
-                                      <label>Surname: </label>
+                                      <label>Họ: </label>
                                       <ErrorMessage name="surname" component="span" />
                                       <Field 
                                       id="inputCreateItem" 
@@ -430,7 +424,7 @@ function Header() {
                                       name="email" 
                                       placeholder="Email" 
                                       />
-                                      <label>Telephone: </label>
+                                      <label>Số điện thoại: </label>
                                       <ErrorMessage name="telephone" component="span" />
                                       <Field 
                                       id="inputCreateItem" 
@@ -438,7 +432,7 @@ function Header() {
                                       placeholder="Telephone" 
                                       />
                                       
-                                      <label>ΑΦΜ: </label>
+                                      <label>Số Thuế: </label>
                                       <ErrorMessage name="taxnumber" component="span" />
                                       <Field 
                                       id="inputCreateItem" 
@@ -446,14 +440,14 @@ function Header() {
                                       placeholder="Taxnumber" 
                                       />
 
-                                      <label>Location: </label>
+                                      <label>Địa chỉ: </label>
                                       <ErrorMessage name="location" component="span" />
                                       <Field 
                                       id="inputCreateItem" 
                                       name="location" 
                                       placeholder="City" 
                                       />
-                                      <label>Country: </label>
+                                      <label>Thành phố: </label>
                                       <ErrorMessage name="country" component="span" />
 
                                       <CountryDropdown 
@@ -463,8 +457,8 @@ function Header() {
                                       onChange={(e) => handleChange(e)}
                                       />
                                       
-                                      <button type="submit">
-                                          Confirm
+                                      <button type="submit" onClose={handleSignUpClose}>
+                                          Đăng ký
                                       </button>
                                       </div>
                                   </Form>

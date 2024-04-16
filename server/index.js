@@ -1,4 +1,3 @@
-// Initializing the variables
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -12,11 +11,10 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // Thay đổi thành origin của trang web của bạn
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); 
     next();
   });
 
-// then express and cors
 app.use(express.json());
 app.use(cors({
     origin: ["https://localhost:3000"],
@@ -24,17 +22,14 @@ app.use(cors({
     credentials: true
 }));
 
-// this for the cookies
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended:true }));
 app.use(session({
     key: "userId",
-    // this for development
     secret: "tempsecret",
     resave: false,
     saveUninitialized:false,
     cookie: {
-        // cookie expires in 8 hours
         expires: 60 * 60 * 8,
     },
 }));

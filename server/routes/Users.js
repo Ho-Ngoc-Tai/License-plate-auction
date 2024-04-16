@@ -41,7 +41,6 @@ router.post('/login', async (req, res) => {
 
     const user = await User.findOne({ where: {username: username}});
 
-    // if the user is not in the table
     if (!user){
         res.json({error: "User doesn't exist!"});
     }
@@ -61,19 +60,13 @@ router.post('/login', async (req, res) => {
                     res.json({token: accessToken, username: user.username, id: user.id });
                 }
             });
-
         }
-
-        
     }
-
 });
 
 router.get('/fetchy/:id', async (req, res) => {
     const myId = req.params.id;
     const userito = await User.findByPk(myId);
-
-    // Don't return more information from the seller than is safe
     res.json({ username: userito.username, saleCount: userito.saleCount, sellerRating: userito.sellerRating, name: userito.name, surname: userito.surname, id: userito.id });
 });
 

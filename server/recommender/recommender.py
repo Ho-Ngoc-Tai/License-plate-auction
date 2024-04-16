@@ -78,7 +78,7 @@ import mysql.connector
 auctionDB = mysql.connector.connect(
     host="localhost", 
     user="root", 
-    password="rb16bhonda", 
+    password="", 
     database="auctionDB"
 )
 

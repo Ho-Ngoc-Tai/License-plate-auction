@@ -30,7 +30,6 @@ router.get('/', async (req, res) => {
                 }
             });
 
-            // Create the mail subsection for them
             const newmail = await Mail.create({
                 itemId: allItems[i].id,
                 itemName: allItems[i].name,
@@ -43,7 +42,6 @@ router.get('/', async (req, res) => {
             const userito = await User.findByPk( allItems[i].UserId);
             const biderito = await User.findByPk(allItems[i].highestBidder);
 
-            // Send confirmation message to buyer
             await Message.create({
                 title: "Confirmation",
                 body: "Congratulations you won the auction! Feel free to contact me for further information on shipment and payment!",
@@ -59,10 +57,8 @@ router.get('/', async (req, res) => {
                 console.log(err);
             });
 
-            // looking for one is enough since its symmetric
             const contactalready = await Contact.findOne({ where: {contactId: userito.id, UserId: biderito.id}});
             
-            // if they are not already on each others contacts add them
             if(contactalready ===null){
 
                 await Contact.create({
@@ -98,7 +94,6 @@ router.get('/', async (req, res) => {
         }
     }
 
-    // House keeping updating on the ones that they're going to be available
     await Item.update({
         state: "AVAILABLE",
         },
@@ -110,7 +105,6 @@ router.get('/', async (req, res) => {
         }
     });
 
-    // Finally return the actually available items
     const availableItems = await Item.findAll({ where: { state: "AVAILABLE"},
     });
 
@@ -123,7 +117,6 @@ router.get('/admin/', validateTheToken, async (req, res) => {
 
     if (username=="admin"){
         
-         // A bit of house keeping. Updating the ones that have been expired
         const allItems = await Item.findAll({ 
             where: { 
                 state: "AVAILABLE",
@@ -144,7 +137,6 @@ router.get('/admin/', validateTheToken, async (req, res) => {
                     }
                 });
 
-                // Create the mail subsection for them
                 const newmail = await Mail.create({
                     itemId: allItems[i].id,
                     itemName: allItems[i].name,
@@ -157,10 +149,9 @@ router.get('/admin/', validateTheToken, async (req, res) => {
                 const userito = await User.findByPk( allItems[i].UserId);
                 const biderito = await User.findByPk(allItems[i].highestBidder);
 
-                // Send confirmation message to buyer
                 await Message.create({
                     title: "Confirmation",
-                    body: "Congratulations you won the auction! Feel free to contact me for further information on shipment and payment!",
+                    body: "Xin chúc mừng bạn đã thắng cuộc đấu giá! Hãy liên hệ với tôi để biết thêm thông tin về lô hàng và thanh toán!",
                     senderId: userito.id,
                     recipientId: biderito.id,
                     senderName: userito.name,
@@ -212,7 +203,6 @@ router.get('/admin/', validateTheToken, async (req, res) => {
             }
         }
 
-        // House keeping updating on the ones that they're going to be available
         await Item.update({
             state: "AVAILABLE",
             },
@@ -224,7 +214,6 @@ router.get('/admin/', validateTheToken, async (req, res) => {
             }
         });
     
-        // get the refreshed list
         const availableItems = await Item.findAll();
         res.json(availableItems);
     }
@@ -234,7 +223,6 @@ router.get('/admin/', validateTheToken, async (req, res) => {
    
 });
 
-// recursively find all the subcategories
 function myChildren(categoriesList, superCategoryId){
     var categs = [];
     categs.push(superCategoryId);
@@ -248,7 +236,6 @@ function myChildren(categoriesList, superCategoryId){
 
 router.get('/categories/:id', async (req, res) => {
 
-    // A bit of house keeping. Updating the ones that have been expired
     const allItems = await Item.findAll({ 
     where: { 
         state: "AVAILABLE",
@@ -269,7 +256,6 @@ router.get('/categories/:id', async (req, res) => {
                 }
             });
 
-            // Create the mail subsection for them
             const newmail = await Mail.create({
                 itemId: allItems[i].id,
                 itemName: allItems[i].name,
@@ -282,10 +268,9 @@ router.get('/categories/:id', async (req, res) => {
             const userito = await User.findByPk( allItems[i].UserId);
             const biderito = await User.findByPk(allItems[i].highestBidder);
 
-            // Send confirmation message to buyer
             await Message.create({
                 title: "Confirmation",
-                body: "Congratulations you won the auction! Feel free to contact me for further information on shipment and payment!",
+                body: "Xin chúc mừng bạn đã thắng cuộc đấu giá! Hãy liên hệ với tôi để biết thêm thông tin về lô hàng và thanh toán!",
                 senderId: userito.id,
                 recipientId: biderito.id,
                 senderName: userito.name,
@@ -298,10 +283,8 @@ router.get('/categories/:id', async (req, res) => {
                 console.log(err);
             });
 
-            // looking for one is enough since its symmetric
             const contactalready = await Contact.findOne({ where: {contactId: userito.id, UserId: biderito.id}});
             
-            // if they are not already on each others contacts add them
             if(contactalready ===null){
 
                 await Contact.create({
@@ -337,7 +320,6 @@ router.get('/categories/:id', async (req, res) => {
         }
     }
 
-    // House keeping updating on the ones that they're going to be available
     await Item.update({
         state: "AVAILABLE",
         },
@@ -349,7 +331,6 @@ router.get('/categories/:id', async (req, res) => {
         }
     });
 
-    // now find the items of this category and below
     const allCategories = await Category.findAll();
     const superCategoryId = req.params.id;
 
@@ -381,7 +362,6 @@ router.get('/fetchy/:id', async (req, res) => {
 
         if (UserData){
 
-            // if he hasn't clicked on that before
             if ( UserData.rating<2){
                 await UserData.update({
                     rating: 2,
@@ -429,7 +409,6 @@ router.get('/mywatchlist/:id', async (req, res) => {
         where: { UserId: myId},
     });
 
-    // Find unique item ids
     var ids = []
     for (var i=0;i<allMyBids.length;i++){
         ids.push(allMyBids[i].ItemId);
@@ -1009,7 +988,6 @@ router.get('/top/:id', async (req, res) => {
     if (recommendations!=null){
 
         const item1 = await Item.findByPk(recommendations.p1);
-        // check also if it's still available (since during the 24 hours it might have been purchased)
         if (item1!=null && item1.state=="AVAILABLE" && item1.UserId!= myId){
             items.push(item1)
         }
@@ -1047,12 +1025,6 @@ router.post('/importxmls', async (req, res) => {
     const parser = new xml2js.Parser();
     var path = require("path");
 
-    // to do it in a bunch
-    // for (var i=0;i<30;i++){
-    //     await fs.readFile(path.join(__dirname, '..', 'ebayXMLs', `items-${i}.xml`), async (err, data)=>{
-    //         await parser.parseString(data, async (err, result)=>{
-    
-    // one by one
     await fs.readFile(path.join(__dirname, '..', 'ebayXMLs', 'items-23.xml'), async (err, data)=>{
         await parser.parseString(data, async (err, result)=>{
 
@@ -1065,8 +1037,7 @@ router.post('/importxmls', async (req, res) => {
 
                 const itemito = result.Items.Item[p];
 
-                // Add this and those with zero either don't add them or add them for sale
-                // since the offer no value as data for the matrix factorisation
+
                 if( parseInt(itemito.Number_of_Bids[0]) == 0 ){
 
                     const myCategories = itemito.Category;
