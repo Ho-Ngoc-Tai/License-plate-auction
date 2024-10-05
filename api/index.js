@@ -2,7 +2,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const https =require('https');
+const https = require('https');
 const fs = require('fs');
 const db = require('./models');
 const { User, Category } = require('./models');
@@ -14,7 +14,7 @@ const session = require("express-session");
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
     next();
-  });
+});
 
 // then express and cors
 app.use(express.json());
@@ -26,13 +26,13 @@ app.use(cors({
 
 // this for the cookies
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({extended:true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
     key: "userId",
     // this for development
     secret: "tempsecret",
     resave: false,
-    saveUninitialized:false,
+    saveUninitialized: false,
     cookie: {
         // cookie expires in 8 hours
         expires: 60 * 60 * 8,
@@ -58,17 +58,16 @@ app.use('/images/', express.static('images'));
 
 // Create the ssl server
 const sslServer = https.createServer({
-    key: fs.readFileSync('D:/Zalo Received/key.pem'),
-    cert: fs.readFileSync('D:/Zalo Received/cert.pem'),
+    key: fs.readFileSync('D:/Zalo Received/key.pem'), cert: fs.readFileSync('D:/Zalo Received/cert.pem'),
 }, app);
 
 // listen on port 33123 creating the tables in models in the process
-db.sequelize.sync({ force: false, alter:true}).then(()=>{
+db.sequelize.sync({ force: false, alter: true }).then(() => {
     console.log("Encrypted server up and running\nConnected to database");
 
     // create the admin, if they do not already exist
-    const password="1234";
-    bcrypt.hash(password, 10).then((hash)=>{
+    const password = "1234";
+    bcrypt.hash(password, 10).then((hash) => {
         User.create({
             username: "admin",
             password: hash,
@@ -87,7 +86,7 @@ db.sequelize.sync({ force: false, alter:true}).then(()=>{
         console.log("Already set up");
     });
 
-    sslServer.listen(33123, ()=>{
+    sslServer.listen(33123, () => {
         console.log("Listening on port: 33123");
     });
 });
